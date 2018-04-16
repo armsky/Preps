@@ -16,6 +16,26 @@ maxProfit = 3
 transactions = [buy, sell, cooldown, buy, sell]
 """
 class Solution(object):
+    # state machine, with O(1) space
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        n = len(prices)
+        if n < 2:
+            return 0
+        buy = -prices[0]
+        sell = 0 #sell[i] could mean sell stock on i, or hold it
+        cooldown = 0
+        for i in range(1, n):
+            pre_buy = buy
+            buy = max(cooldown - prices[i], pre_buy)
+            cooldown = max(cooldown, sell)
+            sell = max(sell, pre_buy + prices[i])
+
+        return max(sell, cooldown)
+
     def maxProfit(self, prices):
         """
         :type prices: List[int]

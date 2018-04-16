@@ -1,0 +1,34 @@
+What kind of features of this editor support ?
+1. Undo/Redo you need track the history by a stack, you can cache all the history
+state of the text, but what if the text is so big ? Therefore you need to cache
+the diff about each change, however, if the user type "hello world", cache the
+each world or each char ?
+2. Cusor and Multi cusor. Insert into the cusor. the basic idea is we can split
+the file into seveval lines, then we can use the col/row to track where the cusor
+is, then when you insert a char at the cusor, this is really a insert an element
+into an array. Image if we open a big file, this will be very slow, because you
+will need to move the char one by one. It will be worse if you need to render the
+font or you need render typesetting of the text, you may need to recalculate
+everything.
+3. Therefore you need a data strcuture here to speed up the insertion and deletion.
+Rope will be an option here, it like binary tree, split a large string by different
+pieces, so you don't need to move all the char, just move those at the same leaf.
+4. Selection and Copy Paste. If you select lines of text, you will need to compute
+all the leaf in our rope, and need to consider how to rebalance the tree.
+5. Search. Well trie will be the option here.
+6. Grammer highlight. First you will need a parser here. and the text editor should
+have api that support render the font in differnt color. If we are designing something
+target to the browser, we should not use textarea anymore, in this case, all the
+text should be render as a html file, the cusor should be an element in that html,
+we render it by caculating the position.
+7. Plugins system. You will need to support a script language in your editor. and
+provide some api about things like uodo/redo, get the text, change the format of
+selected text etc.
+8. Decoding/Encoding. You will need to select right charset based on the file automatically, otherwise you will have wrong data show on the screen.
+9. Typesetting.
+10. Support markup/lex
+
+设计 Google Doc 这种多人同时编辑的，怎么让每个人看到的都是update的version
+http://stackoverflow.com/questions/5772879/how-do-you-write-a-real-time-webbased-collaboration-tool-such-as-google-docs
+Operational transformation
+Instead of editing the doc directly, send operations to server andlet server decide the final/combined state.

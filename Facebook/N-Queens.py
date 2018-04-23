@@ -20,7 +20,7 @@ There exist two distinct solutions to the 4-queens puzzle:
   ".Q.."]
 ]
 """
-# LeetCode 51
+# LeetCode 51. O((n^2)^2)
 class Solution(object):
     def solveNQueens(self, n):
         """

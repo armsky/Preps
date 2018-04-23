@@ -31,7 +31,7 @@ class Solution(object):
             res.append(list(tmp))
             return
         for i in range(len(nums)):
-            if visited[i] or i > 0 and nums[i] == nums[i-1] and not visited[i-1]: #Don't forget i > 0
+            if visited[i] or (i > 0 and nums[i] == nums[i-1] and not visited[i-1]): #Don't forget i > 0
                 continue
             visited[i] = True
             tmp.append(nums[i])
